@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#081329">
+<meta name="description" content="STUDY_OS — a Japanese night-themed gamified JEE study planner.">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+<title>STUDY_OS — Focus Today</title>
+</head>
+<body>
+<header class="topbar">
+  <div><div class="brand">◈ STUDY_OS</div><div class="tagline">FOCUS TODAY · DTU TOMORROW</div></div>
+  <div class="level" id="level">LV. 1 · NOVICE</div>
+</header>
+<nav class="tabs" aria-label="Main navigation">
+  <button class="tab active" data-view="home">⌂ Home</button>
+  <button class="tab" data-view="quests">⚔ Quests</button>
+  <button class="tab" data-view="planner">▦ Planner</button>
+  <button class="tab" data-view="stats">◈ Stats</button>
+</nav>
+<main>
+<section class="hero">
+  <div class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</div>
+  <h1>Small efforts.<br>Big dreams. <span>🌸</span></h1>
+  <p>一歩ずつ — One step at a time.</p>
+</section>
+<section class="view active" id="home">
+  <div class="stats-grid">
+    <article class="stat"><span>TOTAL XP</span><strong id="xp">0</strong></article>
+    <article class="stat"><span>STREAK</span><strong id="streak">0 days</strong></article>
+    <article class="stat"><span>QUESTS</span><strong id="quest-count">0/0</strong></article>
+  </div>
+  <article class="panel">
+    <div class="panel-head"><h2>📜 Today's Quest Log</h2><span id="quest-percent">0%</span></div>
+    <div class="progress"><span id="quest-progress"></span></div>
+    <div id="home-quests"></div>
+    <button class="secondary full" data-open="quests">View all quests →</button>
+  </article>
+  <article class="panel timer-panel">
+    <div class="panel-head"><h2>⏳ Focus Shrine</h2><span class="muted">30 / 7 cycle</span></div>
+    <div class="timer" id="timer">30:00</div><div class="timer-label" id="timer-label">FOCUS SESSION</div>
+    <div class="progress"><span id="timer-progress"></span></div>
+    <div class="button-row">
+      <button id="timer-toggle" class="primary">▶ Start</button>
+      <button id="timer-skip" class="secondary">Skip phase ↗</button>
+      <button id="timer-reset" class="secondary">↻</button>
+    </div>
+    <p class="muted small">Timer runs while this app is open. Breaks are 7 minutes.</p>
+  </article>
+  <article class="panel">
+    <div class="panel-head"><h2>🎧 Lofi corner</h2><span class="muted">Focus · Chill · Achieve</span></div>
+    <p class="muted">Choose ambient sound or open a lofi radio externally.</p>
+    <div class="button-row">
+      <button id="ambient-toggle" class="secondary">♫ Play ambient tone</button>
+      <a class="secondary link-button" href="https://www.youtube.com/results?search_query=lofi+hip+hop+radio+study" target="_blank" rel="noreferrer">Find lofi ↗</a>
+    </div>
+    <p class="muted small" id="audio-status">Sound is off. In-app tone is not a music track.</p>
+  </article>
+</section>
+<section class="view" id="quests">
+  <article class="panel">
+    <h2>⚔ Quest Board</h2><p class="muted">Tick tasks when you finish them to earn XP.</p>
+    <div id="all-quests"></div>
+    <hr>
+    <h3>＋ Create a quest</h3>
+    <form id="quest-form">
+      <label>Quest name<input id="new-title" maxlength="100" required placeholder="e.g. Solve 15 integration PYQs"></label>
+      <label>Category<select id="new-type"><option value="Aakash · Class 12">Aakash · Class 12</option><option value="Vedantu · Class 11">Vedantu · Class 11</option><option value="School / Boards">School / Boards</option><option value="Revision / Test">Revision / Test</option></select></label>
+      <button class="primary" type="submit">Add quest +</button>
+    </form>
+  </article>
+</section>
+<section class="view" id="planner">
+  <article class="panel">
+    <h2>▦ Daily Planner</h2><p class="muted">A flexible starting template — adjust it to your actual day.</p>
+    <div id="routine"></div><hr>
+    <h3>＋ Add a schedule item</h3>
+    <form id="routine-form">
+      <label>Activity<input id="routine-title" required maxlength="100" placeholder="e.g. Revise electrochemistry"></label>
+      <label>Time<input id="routine-time" required maxlength="50" placeholder="e.g. 4:00 PM"></label>
+      <button class="primary" type="submit">Add to today's plan</button>
+    </form>
+    <p class="muted small">This is an editable daily planner, not a synced calendar.</p>
+  </article>
+</section>
+<section class="view" id="stats">
+  <article class="panel">
+    <h2>◈ Player Analytics</h2><p class="muted">Saved locally on this device/browser.</p>
+    <div class="stats-grid two">
+      <article class="stat"><span>XP EARNED</span><strong id="stat-xp">0</strong></article>
+      <article class="stat"><span>QUESTS CLEARED</span><strong id="stat-done">0</strong></article>
+      <article class="stat"><span>FOCUS MINUTES</span><strong id="stat-minutes">0</strong></article>
+      <article class="stat"><span>LEVEL</span><strong id="stat-level">1</strong></article>
+    </div>
+    <div class="panel-head"><h3>Level progression</h3><span id="level-label" class="muted">0 / 200 XP</span></div>
+    <div class="progress"><span id="level-progress"></span></div>
+    <div class="button-row top-gap"><button id="export" class="secondary">Export session summary ↓</button><button id="reset-data" class="danger">Reset progress</button></div>
+    <p class="muted small">No account/cloud sync yet. Streaks are a simple local placeholder, not verified daily activity.</p>
+  </article>
+</section>
+</main>
+<footer><div id="message" role="status">🌸 Every quest is progress.</div><small>STUDY_OS · PORTFOLIO PROJECT · v1.0</small></footer>
+<script src="app.js"></script>
+</body>
+</html>
